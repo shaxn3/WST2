@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/css" href="act4.css"?>
+
+<employees>
+  <employee>
+    <ID>2021-456-789</ID>
+    <name>Juan Dela Cruz</name>
+    <address>234 Maligaya St. Sta. Cruz Manila</address>
+    <age>25</age>
+    <employmentStatus>Regular</employmentStatus>
+    <department>HR</department>
+    <dateEmployed>January 20, 2021</dateEmployed>
+    <dateResigned>December 28, 2024</dateResigned>
+  </employee>
+  
+  <employee>
+    <ID>2021-123-456</ID>
+    <name>Maria Clara</name>
+    <address>123 Maganda St. Sampaloc Manila</address>
+    <age>30</age>
+    <employmentStatus>Regular</employmentStatus>
+    <department>Finance</department>
+    <dateEmployed>February 14, 2021</dateEmployed>
+    <dateResigned>December 28, 2024</dateResigned>
+  </employee>
+
+  <employee>
+    <ID>2021-789-123</ID>
+    <name>Jose Rizal</name>
+    <address>456 Maganda St. Sampaloc Manila</address>
+    <age>35</age>
+    <employmentStatus>Regular</employmentStatus>
+    <department>IT</department>
+    <dateEmployed>March 15, 2021</dateEmployed>
+    <dateResigned>December 28, 2024</dateResigned>
+  </employee>
+
+</employees>
