@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<images>
+    <image>
+        <src>https://i.pinimg.com/736x/3c/51/d1/3c51d1fd754cfb70ec89502afee738a9.jpg</src>
+        <caption>Beach</caption>
+    </image>
+    <image>
+        <src>https://i.pinimg.com/736x/67/d1/5d/67d15d925c1b1f10d36d2305cad7c858.jpg</src>
+        <caption>Hike</caption>
+    </image>
+    <image>
+        <src>https://i.pinimg.com/736x/47/2c/e7/472ce702a42826c727cf3cb88ae47f10.jpg</src>
+        <caption>Farm</caption>
+    </image>
+</images>
