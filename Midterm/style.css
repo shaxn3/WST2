@@ -107,8 +107,8 @@ body {
     border-radius: 50%;
 }
 
-.prev { left: 2px; }
-.next { right: 2px; }
+.prev { left: 20px; }
+.next { right: 20px; }
 
 @media (max-width: 768px) {
     .prev { left: 5px;  }
