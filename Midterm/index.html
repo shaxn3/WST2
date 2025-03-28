@@ -108,7 +108,7 @@
                 let allStudentsSlide = document.createElement("div");
                 allStudentsSlide.className = "mySlides fade";
                 allStudentsSlide.innerHTML = `
-                    <h2>All Students</h2>
+                    <h2 style="color: white;">All Students</h2>
                     <div class="grid-container">${allStudents.join("")}</div>
                 `;
                 slideshowContainer.appendChild(allStudentsSlide);
@@ -124,7 +124,7 @@
                     let slideDiv = document.createElement("div");
                     slideDiv.className = "mySlides fade";
                     slideDiv.innerHTML = `
-                        <h2>Year ${year} Students</h2>
+                        <h2 style="color: white;">Year ${year} Students</h2>
                         <div>${yearGroups[year].join("")}</div>
                     `;
                     slideshowContainer.appendChild(slideDiv);
