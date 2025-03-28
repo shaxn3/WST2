@@ -7,7 +7,7 @@
 body {
     font-family: Arial, sans-serif;
     font-size: 12px;
-    background: #f4f4f4;
+    background: white;
     text-align: center;
 }
 
@@ -38,7 +38,7 @@ body {
 .id-card {
     display: flex;
     align-items: center;
-    background: white;
+    background: #f4f4f4;
     padding: 15px;
     border: 3px solid black;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -50,6 +50,7 @@ body {
 .id-photo {
     width: 80px;
     height: 80px;
+    border: 1px solid black;
     margin-left: 15px;
     object-fit: cover;
 }
