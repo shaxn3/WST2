@@ -2,75 +2,23 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Student ID Slideshow</title>
-    <style>
-        * { box-sizing: border-box; }
-        body { font-family: Verdana, sans-serif; margin: 0; background: #f4f4f4; }
-
-        .mySlides { display: none; text-align: center; }
-
-        .slideshow-container {
-            max-width: 1000px;
-            position: relative;
-            margin: auto;
-        }
-
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: 16px;
-            margin-top: -22px;
-            color: black;
-            font-weight: bold;
-            font-size: 18px;
-            transition: 0.6s ease;
-            border-radius: 0 3px 3px 0;
-            user-select: none;
-        }
-        .next { right: 0; border-radius: 3px 0 0 3px; }
-        .prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
-
-        .dot {
-            cursor: pointer;
-            height: 15px;
-            width: 15px;
-            margin: 0 2px;
-            background-color: #bbb;
-            border-radius: 50%;
-            display: inline-block;
-            transition: background-color 0.6s ease;
-        }
-
-        .active, .dot:hover { background-color: #717171; }
-
-        .fade {
-            animation-name: fade;
-            animation-duration: 1.5s;
-        }
-
-        @keyframes fade {
-            from { opacity: .4 } 
-            to { opacity: 1 }
-        }
-
-        .title-slide {
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 50px;
-        }
-
-        .subtitle-slide {
-            font-size: 18px;
-            margin-bottom: 50px;
-        }
-    </style>
+    <title>Bulacan State University - Student ID Slideshow</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+
+    <!-- Title Slide -->
+    <div class="title-slide">
+        <h1>Bulacan State University</h1>
+        <h2>College of Information and Communication Technology - BSIT BA Students</h2>
+    </div>
+
+    <!-- Slideshow Container -->
     <div class="slideshow-container"></div>
     <br>
-    <div style="text-align:center" id="dots-container"></div>
+    
+    <!-- Dots for navigation -->
+    <div class="dot-container" id="dots-container"></div>
 
     <script>
         let slideIndex = 1;
@@ -120,62 +68,58 @@
                 slideshowContainer.innerHTML = "";
                 dotsContainer.innerHTML = "";
 
-                let groupedByYear = {};
-                
-                for (let student of students) {
-                    let year = student.getElementsByTagName("year")[0].textContent;
-                    let details = {
-                        src: student.getElementsByTagName("src")[0].textContent,
-                        name: student.getElementsByTagName("name")[0].textContent,
-                        course: student.getElementsByTagName("course")[0].textContent,
-                        adviser: student.getElementsByTagName("adviser")[0].textContent,
-                        schoolYear: student.getElementsByTagName("schoolYear")[0].textContent,
-                    };
-                    
-                    if (!groupedByYear[year]) {
-                        groupedByYear[year] = [];
+                let yearGroups = {};
+
+                // Group students by year
+                for (let i = 0; i < students.length; i++) {
+                    let src = students[i].getElementsByTagName("src")[0].textContent;
+                    let name = students[i].getElementsByTagName("name")[0].textContent;
+                    let course = students[i].getElementsByTagName("course")[0].textContent;
+                    let year = students[i].getElementsByTagName("year")[0].textContent;
+                    let adviser = students[i].getElementsByTagName("adviser")[0].textContent;
+                    let schoolYear = students[i].getElementsByTagName("schoolYear")[0].textContent;
+
+                    if (!yearGroups[year]) {
+                        yearGroups[year] = [];
                     }
-                    groupedByYear[year].push(details);
+
+                    yearGroups[year].push(`
+                        <div class="id-card">
+                            <img src="${src}" class="id-photo">
+                            <div class="id-details">
+                                <p><b>Name:</b> ${name}</p>
+                                <p><b>Course:</b> ${course}</p>
+                                <p><b>Year:</b> ${year}</p>
+                                <p><b>Adviser:</b> ${adviser}</p>
+                                <p><b>School Year:</b> ${schoolYear}</p>
+                            </div>
+                        </div>
+                    `);
                 }
 
-                let slideIndex = 0;
-
-                let titleSlide = document.createElement("div");
-                titleSlide.className = "mySlides fade";
-                titleSlide.innerHTML = `
-                    <div class="title-slide">Bulacan State University</div>
-                    <div class="subtitle-slide">College of Information and Communication Technology - BSIT BA Students</div>
-                `;
-                slideshowContainer.appendChild(titleSlide);
-                dotsContainer.innerHTML += `<span class="dot" onclick="currentSlide(${++slideIndex})"></span>`;
-
-                for (let year in groupedByYear) {
+                let index = 0;
+                for (let year in yearGroups) {
+                    index++;
                     let slideDiv = document.createElement("div");
                     slideDiv.className = "mySlides fade";
-                    slideDiv.innerHTML = `<h2>${year} Year Students</h2>`;
-                    
-                    for (let student of groupedByYear[year]) {
-                        slideDiv.innerHTML += `
-                            <div class="id-card">
-                                <img src="${student.src}" class="id-photo">
-                                <div class="id-details">
-                                    <p><b>Name:</b> ${student.name}</p>
-                                    <p><b>Course:</b> ${student.course}</p>
-                                    <p><b>Adviser:</b> ${student.adviser}</p>
-                                    <p><b>School Year:</b> ${student.schoolYear}</p>
-                                </div>
-                            </div>
-                        `;
-                    }
+                    slideDiv.innerHTML = `
+                        <h2>Year ${year} Students</h2>
+                        <div>${yearGroups[year].join("")}</div>
+                    `;
                     slideshowContainer.appendChild(slideDiv);
-                    dotsContainer.innerHTML += `<span class="dot" onclick="currentSlide(${++slideIndex})"></span>`;
+
+                    let dotSpan = document.createElement("span");
+                    dotSpan.className = "dot";
+                    dotSpan.setAttribute("onclick", `currentSlide(${index})`);
+                    dotsContainer.appendChild(dotSpan);
                 }
 
+                // Add navigation buttons
                 let prevButton = document.createElement("a");
                 prevButton.className = "prev";
                 prevButton.innerHTML = "❮";
                 prevButton.addEventListener("click", function() { plusSlides(-1); });
-                
+
                 let nextButton = document.createElement("a");
                 nextButton.className = "next";
                 nextButton.innerHTML = "❯";
@@ -183,11 +127,13 @@
 
                 slideshowContainer.appendChild(prevButton);
                 slideshowContainer.appendChild(nextButton);
+
                 showSlides(slideIndex);
             }
 
             loadXML(loadSlideshow);
         });
     </script>
+
 </body>
 </html>
