@@ -7,16 +7,14 @@
         * { box-sizing: border-box; }
         body { font-family: Verdana, sans-serif; margin: 0; background: #f4f4f4; }
 
-        .mySlides { display: none; }
+        .mySlides { display: none; text-align: center; }
 
-        /* Slideshow container */
         .slideshow-container {
             max-width: 1000px;
             position: relative;
             margin: auto;
         }
 
-        /* Navigation Buttons */
         .prev, .next {
             cursor: pointer;
             position: absolute;
@@ -31,12 +29,9 @@
             border-radius: 0 3px 3px 0;
             user-select: none;
         }
-
         .next { right: 0; border-radius: 3px 0 0 3px; }
-
         .prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
 
-        /* Dots */
         .dot {
             cursor: pointer;
             height: 15px;
@@ -50,31 +45,6 @@
 
         .active, .dot:hover { background-color: #717171; }
 
-        /* ID Card Layout */
-        .id-card {
-            display: flex;
-            align-items: center;
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 450px;
-            margin: auto;
-        }
-
-        .id-photo {
-            width: 100px;
-            height: 100px;
-            border-radius: 10px;
-            margin-right: 20px;
-            object-fit: cover;
-        }
-
-        .id-details { font-size: 14px; text-align: left; }
-
-        .id-details p { margin: 5px 0; }
-
-        /* Fade Animation */
         .fade {
             animation-name: fade;
             animation-duration: 1.5s;
@@ -85,13 +55,19 @@
             to { opacity: 1 }
         }
 
-        @media only screen and (max-width: 300px) {
-            .prev, .next { font-size: 11px; }
+        .title-slide {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 50px;
+        }
+
+        .subtitle-slide {
+            font-size: 18px;
+            margin-bottom: 50px;
         }
     </style>
 </head>
 <body>
-
     <div class="slideshow-container"></div>
     <br>
     <div style="text-align:center" id="dots-container"></div>
@@ -144,42 +120,62 @@
                 slideshowContainer.innerHTML = "";
                 dotsContainer.innerHTML = "";
 
-                for (let i = 0; i < students.length; i++) {
-                    let src = students[i].getElementsByTagName("src")[0].textContent;
-                    let name = students[i].getElementsByTagName("name")[0].textContent;
-                    let course = students[i].getElementsByTagName("course")[0].textContent;
-                    let year = students[i].getElementsByTagName("year")[0].textContent;
-                    let adviser = students[i].getElementsByTagName("adviser")[0].textContent;
-                    let schoolYear = students[i].getElementsByTagName("schoolYear")[0].textContent;
+                let groupedByYear = {};
+                
+                for (let student of students) {
+                    let year = student.getElementsByTagName("year")[0].textContent;
+                    let details = {
+                        src: student.getElementsByTagName("src")[0].textContent,
+                        name: student.getElementsByTagName("name")[0].textContent,
+                        course: student.getElementsByTagName("course")[0].textContent,
+                        adviser: student.getElementsByTagName("adviser")[0].textContent,
+                        schoolYear: student.getElementsByTagName("schoolYear")[0].textContent,
+                    };
+                    
+                    if (!groupedByYear[year]) {
+                        groupedByYear[year] = [];
+                    }
+                    groupedByYear[year].push(details);
+                }
 
+                let slideIndex = 0;
+
+                let titleSlide = document.createElement("div");
+                titleSlide.className = "mySlides fade";
+                titleSlide.innerHTML = `
+                    <div class="title-slide">Bulacan State University</div>
+                    <div class="subtitle-slide">College of Information and Communication Technology - BSIT BA Students</div>
+                `;
+                slideshowContainer.appendChild(titleSlide);
+                dotsContainer.innerHTML += `<span class="dot" onclick="currentSlide(${++slideIndex})"></span>`;
+
+                for (let year in groupedByYear) {
                     let slideDiv = document.createElement("div");
                     slideDiv.className = "mySlides fade";
-                    slideDiv.innerHTML = `
-                        <div class="numbertext">${i + 1} / ${students.length}</div>
-                        <div class="id-card">
-                            <img src="${src}" class="id-photo">
-                            <div class="id-details">
-                                <p><b>Name:</b> ${name}</p>
-                                <p><b>Course:</b> ${course}</p>
-                                <p><b>Year:</b> ${year}</p>
-                                <p><b>Adviser:</b> ${adviser}</p>
-                                <p><b>School Year:</b> ${schoolYear}</p>
+                    slideDiv.innerHTML = `<h2>${year} Year Students</h2>`;
+                    
+                    for (let student of groupedByYear[year]) {
+                        slideDiv.innerHTML += `
+                            <div class="id-card">
+                                <img src="${student.src}" class="id-photo">
+                                <div class="id-details">
+                                    <p><b>Name:</b> ${student.name}</p>
+                                    <p><b>Course:</b> ${student.course}</p>
+                                    <p><b>Adviser:</b> ${student.adviser}</p>
+                                    <p><b>School Year:</b> ${student.schoolYear}</p>
+                                </div>
                             </div>
-                        </div>
-                    `;
+                        `;
+                    }
                     slideshowContainer.appendChild(slideDiv);
-
-                    let dotSpan = document.createElement("span");
-                    dotSpan.className = "dot";
-                    dotSpan.setAttribute("onclick", `currentSlide(${i + 1})`);
-                    dotsContainer.appendChild(dotSpan);
+                    dotsContainer.innerHTML += `<span class="dot" onclick="currentSlide(${++slideIndex})"></span>`;
                 }
 
                 let prevButton = document.createElement("a");
                 prevButton.className = "prev";
                 prevButton.innerHTML = "❮";
                 prevButton.addEventListener("click", function() { plusSlides(-1); });
-
+                
                 let nextButton = document.createElement("a");
                 nextButton.className = "next";
                 nextButton.innerHTML = "❯";
@@ -187,13 +183,11 @@
 
                 slideshowContainer.appendChild(prevButton);
                 slideshowContainer.appendChild(nextButton);
-
                 showSlides(slideIndex);
             }
 
             loadXML(loadSlideshow);
         });
     </script>
-
 </body>
 </html>
