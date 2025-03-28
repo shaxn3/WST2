@@ -51,7 +51,7 @@
             function loadXML(callback) {
                 let xhttp = new XMLHttpRequest();
                 xhttp.overrideMimeType("application/xml");
-                xhttp.open("GET", "students.xml", true);
+                xhttp.open("GET", "shayne_sanpedro.xml", true); // Updated XML file name
                 xhttp.onreadystatechange = function () {
                     if (xhttp.readyState == 4 && xhttp.status == 200) {
                         callback(xhttp.responseXML);
@@ -68,6 +68,7 @@
                 slideshowContainer.innerHTML = "";
                 dotsContainer.innerHTML = "";
 
+                let allStudents = [];
                 let yearGroups = {};
 
                 // Group students by year
@@ -79,11 +80,7 @@
                     let adviser = students[i].getElementsByTagName("adviser")[0].textContent;
                     let schoolYear = students[i].getElementsByTagName("schoolYear")[0].textContent;
 
-                    if (!yearGroups[year]) {
-                        yearGroups[year] = [];
-                    }
-
-                    yearGroups[year].push(`
+                    let studentCard = `
                         <div class="id-card">
                             <img src="${src}" class="id-photo">
                             <div class="id-details">
@@ -94,10 +91,34 @@
                                 <p><b>School Year:</b> ${schoolYear}</p>
                             </div>
                         </div>
-                    `);
+                    `;
+
+                    allStudents.push(studentCard);
+
+                    if (!yearGroups[year]) {
+                        yearGroups[year] = [];
+                    }
+                    yearGroups[year].push(studentCard);
                 }
 
                 let index = 0;
+
+                // First slide: Show all students
+                index++;
+                let allStudentsSlide = document.createElement("div");
+                allStudentsSlide.className = "mySlides fade";
+                allStudentsSlide.innerHTML = `
+                    <h2>All Students</h2>
+                    <div>${allStudents.join("")}</div>
+                `;
+                slideshowContainer.appendChild(allStudentsSlide);
+
+                let dotAll = document.createElement("span");
+                dotAll.className = "dot";
+                dotAll.setAttribute("onclick", `currentSlide(${index})`);
+                dotsContainer.appendChild(dotAll);
+
+                // Following slides: Grouped by year
                 for (let year in yearGroups) {
                     index++;
                     let slideDiv = document.createElement("div");
