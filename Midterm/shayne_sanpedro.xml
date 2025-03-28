@@ -2,7 +2,7 @@
 <students>
     <!-- BA 3rd Year Section A-G2-->
     <student>
-        <src>images/student1.jpg</src>
+        <src>https://i.pinimg.com/736x/78/f0/d6/78f0d6add27a6a65e9839a8a48a38f10.jpg</src>
         <name>Yuan Tanglao</name>
         <course>BSIT</course>
         <year>3rd Year (A-G2)</year>
@@ -10,7 +10,7 @@
         <schoolYear>2024-2025</schoolYear>
     </student>
     <student>
-        <src>images/student5.jpg</src>
+        <src>https://i.pinimg.com/736x/45/c4/b0/45c4b0645f1a37e6cc9bc20b2a3db68d.jpg</src>
         <name>Samuel Fajardo</name>
         <course>BSIT</course>
         <year>3rd Year (A-G2)</year>
@@ -18,7 +18,7 @@
         <schoolYear>2024-2025</schoolYear>
     </student>
     <student>
-        <src>images/student9.jpg</src>
+        <src>https://i.pinimg.com/736x/72/03/10/7203102d184a695733931577546b4dfe.jpg</src>
         <name>Patrick De Jesus</name>
         <course>BSIT</course>
         <year>3rd Year (A-G2)</year>
@@ -26,7 +26,7 @@
         <schoolYear>2024-2025</schoolYear>
     </student>
     <student>
-        <src>images/student6.jpg</src>
+        <src>https://i.pinimg.com/736x/c7/10/f7/c710f7c861ebf42fe87c4a84e0e06460.jpg</src>
         <name>Jacob Figueroa</name>
         <course>BSIT</course>
         <year>3rd Year (A-G2)</year>
@@ -36,7 +36,7 @@
 
     <!-- BA 3rd Year Section B-G1-->
     <student>
-        <src>images/student2.jpg</src>
+        <src>https://i.pinimg.com/736x/d4/5e/77/d45e7768a551280b6597d3cb5caa589b.jpg</src>
         <name>Shayne San Pedro</name>
         <course>BSIT</course>
         <year>3rd Year (B-G1)</year>
@@ -44,7 +44,7 @@
         <schoolYear>2024-2025</schoolYear>
     </student>
     <student>
-        <src>images/student10.jpg</src>
+        <src>https://i.pinimg.com/736x/5f/e9/3d/5fe93d7386c9b7b959759933b6d1dfc3.jpg</src>
         <name>Aira Valencia</name>
         <course>BSIT</course>
         <year>3rd Year (B-G1)</year>
@@ -52,7 +52,7 @@
         <schoolYear>2024-2025</schoolYear>
     </student>
     <student>
-        <src>images/student7.jpg</src>
+        <src>https://i.pinimg.com/736x/49/94/40/499440e13ca9b58270f98773dcb74a12.jpg</src>
         <name>Kylie Dela Peña</name>
         <course>BSIT</course>
         <year>3rd Year (B-G1)</year>
@@ -60,9 +60,9 @@
         <schoolYear>2024-2025</schoolYear>
     </student>
 
-    <!-- Another group of 3 classmates -->
+    <!-- BA 3rd Year Section B-G2-->
     <student>
-        <src>images/student3.jpg</src>
+        <src>https://i.pinimg.com/736x/a9/78/6a/a9786a86b9f55f3a64d070016fadb756.jpg</src>
         <name>Eryn Santiago</name>
         <course>BSIT</course>
         <year>3rd Year (B-G2)</year>
@@ -70,7 +70,7 @@
         <schoolYear>2024-2025</schoolYear>
     </student>
     <student>
-        <src>images/student4.jpg</src>
+        <src>https://i.pinimg.com/736x/a9/c3/95/a9c395e0b9d562a45f90b1a4e5e384bb.jpg</src>
         <name>Cedric Dela Torre</name>
         <course>BSIT</course>
         <year>3rd Year (B-G2)</year>
@@ -78,7 +78,7 @@
         <schoolYear>2024-2025</schoolYear>
     </student>
     <student>
-        <src>images/student8.jpg</src>
+        <src>https://i.pinimg.com/736x/c8/ff/dc/c8ffdcd690ec14aabafe0fc18fd0b782.jpg</src>
         <name>Kyle Angeles</name>
         <course>BSIT</course>
         <year>3rd Year (B-G2)</year>
