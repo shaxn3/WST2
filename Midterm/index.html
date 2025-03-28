@@ -51,7 +51,7 @@
             function loadXML(callback) {
                 let xhttp = new XMLHttpRequest();
                 xhttp.overrideMimeType("application/xml");
-                xhttp.open("GET", "shayne_sanpedro.xml", true); // Updated XML file name
+                xhttp.open("GET", "shayne_sanpedro.xml", true);
                 xhttp.onreadystatechange = function () {
                     if (xhttp.readyState == 4 && xhttp.status == 200) {
                         callback(xhttp.responseXML);
@@ -103,13 +103,13 @@
 
                 let index = 0;
 
-                // First slide: Show all students
+                // First slide: Show all students in a grid layout
                 index++;
                 let allStudentsSlide = document.createElement("div");
                 allStudentsSlide.className = "mySlides fade";
                 allStudentsSlide.innerHTML = `
                     <h2>All Students</h2>
-                    <div>${allStudents.join("")}</div>
+                    <div class="grid-container">${allStudents.join("")}</div>
                 `;
                 slideshowContainer.appendChild(allStudentsSlide);
 
@@ -155,6 +155,16 @@
             loadXML(loadSlideshow);
         });
     </script>
+
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusts automatically */
+            gap: 10px; /* Adds space between cards */
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 
 </body>
 </html>
