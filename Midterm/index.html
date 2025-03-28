@@ -1,170 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bulacan State University - Student ID Slideshow</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Bulacan State University - Student ID</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Title Slide -->
-    <div class="title-slide">
-        <h1>Bulacan State University</h1>
-        <h2>College of Information and Communication Technology - BSIT BA Students</h2>
+    <div class="header">
+        <h1>ABC Colleges</h1>
+        <h2>Library Users</h2>
     </div>
 
-    <!-- Slideshow Container -->
-    <div class="slideshow-container"></div>
-    <br>
-    
-    <!-- Dots for navigation -->
-    <div class="dot-container" id="dots-container"></div>
+    <div class="grid-container" id="student-container">
+        <!-- Student ID Cards will be loaded here -->
+    </div>
 
     <script>
-        let slideIndex = 1;
-
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-
-        function showSlides(n) {
-            let slides = document.getElementsByClassName("mySlides");
-            let dots = document.getElementsByClassName("dot");
-
-            if (slides.length === 0) return;
-
-            if (n > slides.length) { slideIndex = 1; }
-            if (n < 1) { slideIndex = slides.length; }
-
-            for (let slide of slides) { slide.style.display = "none"; }
-            for (let dot of dots) { dot.className = dot.className.replace(" active", ""); }
-
-            slides[slideIndex - 1].style.display = "block";
-            dots[slideIndex - 1].className += " active";
-        }
-
         document.addEventListener("DOMContentLoaded", function () {
-            function loadXML(callback) {
-                let xhttp = new XMLHttpRequest();
-                xhttp.overrideMimeType("application/xml");
-                xhttp.open("GET", "shayne_sanpedro.xml", true);
-                xhttp.onreadystatechange = function () {
-                    if (xhttp.readyState == 4 && xhttp.status == 200) {
-                        callback(xhttp.responseXML);
-                    }
-                };
-                xhttp.send();
-            }
+            fetch("students.xml")
+                .then(response => response.text())
+                .then(str => (new window.DOMParser()).parseFromString(str, "text/xml"))
+                .then(data => {
+                    let students = data.getElementsByTagName("student");
+                    let container = document.getElementById("student-container");
+                    let studentHTML = "";
 
-            function loadSlideshow(xml) {
-                let students = xml.getElementsByTagName("student");
-                let slideshowContainer = document.querySelector(".slideshow-container");
-                let dotsContainer = document.querySelector("#dots-container");
+                    for (let i = 0; i < students.length; i++) {
+                        let src = students[i].getElementsByTagName("src")[0].textContent;
+                        let name = students[i].getElementsByTagName("name")[0].textContent;
+                        let course = students[i].getElementsByTagName("course")[0].textContent;
+                        let year = students[i].getElementsByTagName("year")[0].textContent;
+                        let adviser = students[i].getElementsByTagName("adviser")[0].textContent;
+                        let schoolYear = students[i].getElementsByTagName("schoolYear")[0].textContent;
 
-                slideshowContainer.innerHTML = "";
-                dotsContainer.innerHTML = "";
-
-                let allStudents = [];
-                let yearGroups = {};
-
-                // Group students by year
-                for (let i = 0; i < students.length; i++) {
-                    let src = students[i].getElementsByTagName("src")[0].textContent;
-                    let name = students[i].getElementsByTagName("name")[0].textContent;
-                    let course = students[i].getElementsByTagName("course")[0].textContent;
-                    let year = students[i].getElementsByTagName("year")[0].textContent;
-                    let adviser = students[i].getElementsByTagName("adviser")[0].textContent;
-                    let schoolYear = students[i].getElementsByTagName("schoolYear")[0].textContent;
-
-                    let studentCard = `
-                        <div class="id-card">
-                            <img src="${src}" class="id-photo">
-                            <div class="id-details">
-                                <p><b>Name:</b> ${name}</p>
-                                <p><b>Course:</b> ${course}</p>
-                                <p><b>Year:</b> ${year}</p>
-                                <p><b>Adviser:</b> ${adviser}</p>
-                                <p><b>School Year:</b> ${schoolYear}</p>
+                        studentHTML += `
+                            <div class="id-card">
+                                <div class="id-details">
+                                    <p><b>Name:</b> ${name}</p>
+                                    <p><b>Course:</b> ${course}</p>
+                                    <p><b>Year Level / Section:</b> ${year}</p>
+                                    <p><b>Adviser:</b> ${adviser}</p>
+                                    <p><b>School Year:</b> ${schoolYear}</p>
+                                </div>
+                                <img src="${src}" class="id-photo">
                             </div>
-                        </div>
-                    `;
-
-                    allStudents.push(studentCard);
-
-                    if (!yearGroups[year]) {
-                        yearGroups[year] = [];
+                        `;
                     }
-                    yearGroups[year].push(studentCard);
-                }
 
-                let index = 0;
-
-                // First slide: Show all students in a grid layout
-                index++;
-                let allStudentsSlide = document.createElement("div");
-                allStudentsSlide.className = "mySlides fade";
-                allStudentsSlide.innerHTML = `
-                    <h2 style="color: white;">All Students</h2>
-                    <div class="grid-container">${allStudents.join("")}</div>
-                `;
-                slideshowContainer.appendChild(allStudentsSlide);
-
-                let dotAll = document.createElement("span");
-                dotAll.className = "dot";
-                dotAll.setAttribute("onclick", `currentSlide(${index})`);
-                dotsContainer.appendChild(dotAll);
-
-                // Following slides: Grouped by year
-                for (let year in yearGroups) {
-                    index++;
-                    let slideDiv = document.createElement("div");
-                    slideDiv.className = "mySlides fade";
-                    slideDiv.innerHTML = `
-                        <h2 style="color: white;">Year ${year} Students</h2>
-                        <div>${yearGroups[year].join("")}</div>
-                    `;
-                    slideshowContainer.appendChild(slideDiv);
-
-                    let dotSpan = document.createElement("span");
-                    dotSpan.className = "dot";
-                    dotSpan.setAttribute("onclick", `currentSlide(${index})`);
-                    dotsContainer.appendChild(dotSpan);
-                }
-
-                // Add navigation buttons
-                let prevButton = document.createElement("a");
-                prevButton.className = "prev";
-                prevButton.innerHTML = "❮";
-                prevButton.addEventListener("click", function() { plusSlides(-1); });
-
-                let nextButton = document.createElement("a");
-                nextButton.className = "next";
-                nextButton.innerHTML = "❯";
-                nextButton.addEventListener("click", function() { plusSlides(1); });
-
-                slideshowContainer.appendChild(prevButton);
-                slideshowContainer.appendChild(nextButton);
-
-                showSlides(slideIndex);
-            }
-
-            loadXML(loadSlideshow);
+                    container.innerHTML = studentHTML;
+                });
         });
     </script>
-
-    <style>
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusts automatically */
-            gap: 10px; /* Adds space between cards */
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
 
 </body>
 </html>
