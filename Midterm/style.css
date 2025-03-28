@@ -6,49 +6,31 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: url('BSU.jpg') no-repeat center center fixed;
-    background-size: cover;
+    background: #f4f4f4;
     text-align: center;
 }
 
-/* Title Slide */
-.title-slide {
-    background: #9D131A;
-    color: white;
-    padding: 40px;
-    border-radius: 10px;
+.header {
+    margin-top: 20px;
+}
+
+.header h1 {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.header h2 {
+    font-size: 22px;
     margin-bottom: 20px;
-    font-weight: bold;
 }
 
-.title-slide h1 {
-    font-size: 28px;
-    margin: 0;
-}
-
-.title-slide h2 {
-    font-size: 20px;
-    font-weight: normal;
-    margin: 5px 0;
-    color: white;
-    color: #F4A701;
-    font-weight: bold;
-}
-
-/* Slideshow Container */
-.slideshow-container {
-    max-width: 1000px;
-    position: relative;
-    margin: auto;
-}
-/* Grid Container First Slide */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     justify-content: center;
     padding: 20px;
-    max-width: 1200px; 
+    max-width: 1200px;
     margin: auto;
 }
 
@@ -58,26 +40,24 @@ body {
     align-items: center;
     background: white;
     padding: 15px;
-    margin: 15px auto;
     border-radius: 10px;
-    border: 3px solid black;
+    border: 2px solid black;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 390px;
-    margin-bottom: 20px;
+    width: 400px;
     max-width: 100%;
-    flex-wrap: wrap;
+    text-align: left;
 }
 
 .id-photo {
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
-    margin-right: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-left: 15px;
     object-fit: cover;
 }
 
 .id-details {
-    font-size: 12px;
+    font-size: 14px;
     text-align: left;
     flex: 1;
 }
@@ -86,78 +66,15 @@ body {
     margin: 5px 0;
 }
 
-/* Slideshow Effects */
-.mySlides {
-    display: none;
-}
-
-.fade {
-    animation: fade 1.5s;
-}
-
-@keyframes fade {
-    from { opacity: 0.4 } 
-    to { opacity: 1 }
-}
-
-/* Navigation Buttons */
-.prev, .next {
-    cursor: pointer;
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    width: auto;
-    padding: 10px;
-    color: black;
-    font-size: 30px;
-    font-weight: bold;
-    transition: 0.3s;
-    z-index: 100;
-    background-color: rgba(157, 19, 26, 0.8);
-    border-radius: 50%;
-}
-
-.prev { left: 20px; }
-.next { right: 20px; }
-
-@media (max-width: 768px) {
-    .prev { left: 5px;  }
-    .next { right: 5px; }
-}
-.prev:hover, .next:hover {
-    background-color: #F4A701; 
-    color: black;
-}
-
-/* Dots */
-.dot-container {
-    text-align: center;
-    margin-top: 10px;
-}
-
-.dot {
-    cursor: pointer;
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
-}
-
-.active, .dot:hover {
-    background-color: #717171;
-}
-
-
+/* Responsive */
 @media (max-width: 600px) {
     .id-card {
         flex-direction: column;
-        align-items: center;
         text-align: center;
+        align-items: center;
     }
     .id-photo {
-        margin-bottom: 10px;
+        margin-left: 0;
+        margin-top: 10px;
     }
 }
