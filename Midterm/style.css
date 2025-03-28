@@ -93,7 +93,7 @@ body {
 /* Navigation Buttons */
 .prev, .next {
     cursor: pointer;
-    position: absolute;
+    position: fixed;
     top: 50%;
     transform: translateY(-50%);
     width: auto;
@@ -102,13 +102,18 @@ body {
     font-size: 30px;
     font-weight: bold;
     transition: 0.3s;
+    z-index: 100;
     background-color: rgba(157, 19, 26, 0.8);
     border-radius: 50%;
 }
 
-.prev { left: 1px; }
-.next { right: 1px; }
+.prev { left: 2px; }
+.next { right: 2px; }
 
+@media (max-width: 768px) {
+    .prev { left: 5px;  }
+    .next { right: 5px; }
+}
 .prev:hover, .next:hover {
     background-color: #F4A701; 
     color: black;
