@@ -13,7 +13,7 @@ body {
 
 /* Title Slide */
 .title-slide {
-    background: #003366;
+    background: #9D131A;
     color: white;
     padding: 40px;
     border-radius: 10px;
@@ -23,12 +23,14 @@ body {
 .title-slide h1 {
     font-size: 28px;
     margin: 0;
+    color: #F4A701;
 }
 
 .title-slide h2 {
     font-size: 20px;
     font-weight: normal;
     margin: 5px 0;
+    color: white;
 }
 
 /* Slideshow Container */
@@ -44,7 +46,7 @@ body {
     align-items: center;
     background: white;
     padding: 15px;
-    margin: 15px auto;
+    margin: 25px auto;
     border-radius: 10px;
     border: 3px solid black;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
