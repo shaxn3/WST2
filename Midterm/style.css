@@ -106,8 +106,8 @@ body {
     border-radius: 50%;
 }
 
-.prev { left: 50px; }
-.next { right: 10px; }
+.prev { left: 1px; }
+.next { right: 1px; }
 
 .prev:hover, .next:hover {
     background-color: #F4A701; 
