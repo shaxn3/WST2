@@ -106,7 +106,7 @@ body {
     border-radius: 50%;
 }
 
-.prev { left: 10px; }
+.prev { left: 50px; }
 .next { right: 10px; }
 
 .prev:hover, .next:hover {
