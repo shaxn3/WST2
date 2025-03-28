@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student ID Slideshow</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: Verdana, sans-serif; margin: 0; background: #f4f4f4; }
+
+        .mySlides { display: none; }
+
+        /* Slideshow container */
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+        }
+
+        /* Navigation Buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: black;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        .next { right: 0; border-radius: 3px 0 0 3px; }
+
+        .prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
+
+        /* Dots */
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active, .dot:hover { background-color: #717171; }
+
+        /* ID Card Layout */
+        .id-card {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 450px;
+            margin: auto;
+        }
+
+        .id-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            margin-right: 20px;
+            object-fit: cover;
+        }
+
+        .id-details { font-size: 14px; text-align: left; }
+
+        .id-details p { margin: 5px 0; }
+
+        /* Fade Animation */
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from { opacity: .4 } 
+            to { opacity: 1 }
+        }
+
+        @media only screen and (max-width: 300px) {
+            .prev, .next { font-size: 11px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slideshow-container"></div>
+    <br>
+    <div style="text-align:center" id="dots-container"></div>
+
+    <script>
+        let slideIndex = 1;
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+
+            if (slides.length === 0) return;
+
+            if (n > slides.length) { slideIndex = 1; }
+            if (n < 1) { slideIndex = slides.length; }
+
+            for (let slide of slides) { slide.style.display = "none"; }
+            for (let dot of dots) { dot.className = dot.className.replace(" active", ""); }
+
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            function loadXML(callback) {
+                let xhttp = new XMLHttpRequest();
+                xhttp.overrideMimeType("application/xml");
+                xhttp.open("GET", "students.xml", true);
+                xhttp.onreadystatechange = function () {
+                    if (xhttp.readyState == 4 && xhttp.status == 200) {
+                        callback(xhttp.responseXML);
+                    }
+                };
+                xhttp.send();
+            }
+
+            function loadSlideshow(xml) {
+                let students = xml.getElementsByTagName("student");
+                let slideshowContainer = document.querySelector(".slideshow-container");
+                let dotsContainer = document.querySelector("#dots-container");
+
+                slideshowContainer.innerHTML = "";
+                dotsContainer.innerHTML = "";
+
+                for (let i = 0; i < students.length; i++) {
+                    let src = students[i].getElementsByTagName("src")[0].textContent;
+                    let name = students[i].getElementsByTagName("name")[0].textContent;
+                    let course = students[i].getElementsByTagName("course")[0].textContent;
+                    let year = students[i].getElementsByTagName("year")[0].textContent;
+                    let adviser = students[i].getElementsByTagName("adviser")[0].textContent;
+                    let schoolYear = students[i].getElementsByTagName("schoolYear")[0].textContent;
+
+                    let slideDiv = document.createElement("div");
+                    slideDiv.className = "mySlides fade";
+                    slideDiv.innerHTML = `
+                        <div class="numbertext">${i + 1} / ${students.length}</div>
+                        <div class="id-card">
+                            <img src="${src}" class="id-photo">
+                            <div class="id-details">
+                                <p><b>Name:</b> ${name}</p>
+                                <p><b>Course:</b> ${course}</p>
+                                <p><b>Year:</b> ${year}</p>
+                                <p><b>Adviser:</b> ${adviser}</p>
+                                <p><b>School Year:</b> ${schoolYear}</p>
+                            </div>
+                        </div>
+                    `;
+                    slideshowContainer.appendChild(slideDiv);
+
+                    let dotSpan = document.createElement("span");
+                    dotSpan.className = "dot";
+                    dotSpan.setAttribute("onclick", `currentSlide(${i + 1})`);
+                    dotsContainer.appendChild(dotSpan);
+                }
+
+                let prevButton = document.createElement("a");
+                prevButton.className = "prev";
+                prevButton.innerHTML = "❮";
+                prevButton.addEventListener("click", function() { plusSlides(-1); });
+
+                let nextButton = document.createElement("a");
+                nextButton.className = "next";
+                nextButton.innerHTML = "❯";
+                nextButton.addEventListener("click", function() { plusSlides(1); });
+
+                slideshowContainer.appendChild(prevButton);
+                slideshowContainer.appendChild(nextButton);
+
+                showSlides(slideIndex);
+            }
+
+            loadXML(loadSlideshow);
+        });
+    </script>
+
+</body>
+</html>

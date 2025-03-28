@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+    <!-- Group of 4 classmates -->
+    <student>
+        <src>images/student1.jpg</src>
+        <name>John Doe</name>
+        <course>BSIT</course>
+        <year>3rd Year - Section A</year>
+        <adviser>Mr. Smith</adviser>
+        <schoolYear>2024-2025</schoolYear>
+    </student>
+    <student>
+        <src>images/student5.jpg</src>
+        <name>Michael Johnson</name>
+        <course>BSIT</course>
+        <year>3rd Year - Section A</year>
+        <adviser>Mr. Smith</adviser>
+        <schoolYear>2024-2025</schoolYear>
+    </student>
+    <student>
+        <src>images/student9.jpg</src>
+        <name>David White</name>
+        <course>BSIT</course>
+        <year>3rd Year - Section A</year>
+        <adviser>Mr. Smith</adviser>
+        <schoolYear>2024-2025</schoolYear>
+    </student>
+    <student>
+        <src>images/student6.jpg</src>
+        <name>Sarah Wilson</name>
+        <course>BSIT</course>
+        <year>3rd Year - Section A</year>
+        <adviser>Mr. Smith</adviser>
+        <schoolYear>2024-2025</schoolYear>
+    </student>
+
+    <!-- Group of 3 classmates -->
+    <student>
+        <src>images/student2.jpg</src>
+        <name>Jane Smith</name>
+        <course>BSCpE</course>
+        <year>2nd Year - Section B</year>
+        <adviser>Ms. Johnson</adviser>
+        <schoolYear>2024-2025</schoolYear>
+    </student>
+    <student>
+        <src>images/student10.jpg</src>
+        <name>Olivia Anderson</name>
+        <course>BSCpE</course>
+        <year>2nd Year - Section B</year>
+        <adviser>Ms. Johnson</adviser>
+        <schoolYear>2024-2025</schoolYear>
+    </student>
+    <student>
+        <src>images/student7.jpg</src>
+        <name>Daniel Martinez</name>
+        <course>BSCpE</course>
+        <year>2nd Year - Section B</year>
+        <adviser>Ms. Johnson</adviser>
+        <schoolYear>2024-2025</schoolYear>
+    </student>
+
+    <!-- Another group of 3 classmates -->
+    <student>
+        <src>images/student3.jpg</src>
+        <name>Alex Brown</name>
+        <course>BSCS</course>
+        <year>4th Year - Section C</year>
+        <adviser>Dr. Williams</adviser>
+        <schoolYear>2024-2025</schoolYear>
+    </student>
+    <student>
+        <src>images/student4.jpg</src>
+        <name>Emily Davis</name>
+        <course>BSCS</course>
+        <year>4th Year - Section C</year>
+        <adviser>Dr. Williams</adviser>
+        <schoolYear>2024-2025</schoolYear>
+    </student>
+    <student>
+        <src>images/student8.jpg</src>
+        <name>Jessica Taylor</name>
+        <course>BSCS</course>
+        <year>4th Year - Section C</year>
+        <adviser>Dr. Williams</adviser>
+        <schoolYear>2024-2025</schoolYear>
+    </student>
+</students>
