@@ -1,76 +1,143 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #F4A701;
+/* General Reset */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-.header {
-    background-color: #9D131A;
-    color: white;
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
     text-align: center;
-    padding: 20px;
-    font-size: 24px;
-    font-weight: bold;
 }
 
+/* Title Slide */
+.title-slide {
+    background: #003366;
+    color: white;
+    padding: 40px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.title-slide h1 {
+    font-size: 28px;
+    margin: 0;
+}
+
+.title-slide h2 {
+    font-size: 20px;
+    font-weight: normal;
+    margin: 5px 0;
+}
+
+/* Slideshow Container */
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
+/* ID Card Styling */
 .id-card {
     display: flex;
     align-items: center;
     background: white;
-    border: 3px solid #9D131A;
-    border-radius: 10px;
     padding: 15px;
-    margin: 25px auto;
-    width: 80%;
-    max-width: 500px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    margin: 15px auto;
+    border-radius: 10px;
+    border: 3px solid black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 450px;
+    margin: auto;
+    flex-wrap: wrap;
 }
 
-.id-card-info {
-    margin-left: 15px;
-    color: #333;
+.id-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    margin-right: 20px;
+    object-fit: cover;
 }
 
-.id-card-info b {
-    color: #9D131A;
+.id-details {
+    font-size: 12px;
+    text-align: left;
+    flex: 1;
 }
 
+.id-details p {
+    margin: 5px 0;
+}
+
+/* Slideshow Effects */
+.mySlides {
+    display: none;
+}
+
+.fade {
+    animation: fade 1.5s;
+}
+
+@keyframes fade {
+    from { opacity: 0.4 } 
+    to { opacity: 1 }
+}
+
+/* Navigation Buttons */
 .prev, .next {
     cursor: pointer;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: auto;
     padding: 10px;
-    color: white;
+    color: black;
     font-size: 30px;
     font-weight: bold;
     transition: 0.3s;
-    background-color: rgba(157, 19, 26, 0.8);
+    background-color: rgba(255, 255, 255, 0.7);
     border-radius: 50%;
 }
 
-.prev { left: 20px; }
-.next { right: 20px; }
+.prev { left: 10px; }
+.next { right: 10px; }
 
 .prev:hover, .next:hover {
-    background-color: #F4A701;
-    color: black;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
 }
 
-@media (max-width: 768px) {
+/* Dots (Slide Indicators) */
+.dot-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
     .id-card {
-        width: 90%;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
-    
-    .prev, .next {
-        width: 40px;
-        height: 40px;
-        font-size: 24px;
+    .id-photo {
+        margin-bottom: 10px;
     }
 }
