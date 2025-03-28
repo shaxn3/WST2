@@ -1,13 +1,87 @@
-* { box-sizing: border-box; }
-body { font-family: Verdana, sans-serif; margin: 0; background: #f4f4f4; }
+/* General Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-.mySlides { display: none; }
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    text-align: center;
+}
 
-/* Slideshow container */
+/* Title Slide */
+.title-slide {
+    background: #003366;
+    color: white;
+    padding: 40px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.title-slide h1 {
+    font-size: 28px;
+    margin: 0;
+}
+
+.title-slide h2 {
+    font-size: 20px;
+    font-weight: normal;
+    margin: 5px 0;
+}
+
+/* Slideshow Container */
 .slideshow-container {
     max-width: 1000px;
     position: relative;
     margin: auto;
+}
+
+/* ID Card Styling */
+.id-card {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    border: 3px solid black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 450px;
+    margin: auto;
+    flex-wrap: wrap;
+}
+
+.id-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    margin-right: 20px;
+    object-fit: cover;
+}
+
+.id-details {
+    font-size: 12px;
+    text-align: left;
+    flex: 1;
+}
+
+.id-details p {
+    margin: 5px 0;
+}
+
+/* Slideshow Effects */
+.mySlides {
+    display: none;
+}
+
+.fade {
+    animation: fade 1.5s;
+}
+
+@keyframes fade {
+    from { opacity: 0.4 } 
+    to { opacity: 1 }
 }
 
 /* Navigation Buttons */
@@ -33,9 +107,15 @@ body { font-family: Verdana, sans-serif; margin: 0; background: #f4f4f4; }
 
 .prev:hover, .next:hover {
     background-color: rgba(0,0,0,0.8);
+    color: white;
 }
 
-/* Dots */
+/* Dots (Slide Indicators) */
+.dot-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
 .dot {
     cursor: pointer;
     height: 15px;
@@ -51,46 +131,14 @@ body { font-family: Verdana, sans-serif; margin: 0; background: #f4f4f4; }
     background-color: #717171;
 }
 
-/* ID Card Layout */
-.id-card {
-    display: flex;
-    align-items: center;
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 450px;
-    margin: auto;
-}
-
-.id-photo {
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
-    margin-right: 20px;
-    object-fit: cover;
-}
-
-.id-details {
-    font-size: 14px;
-    text-align: left;
-}
-
-.id-details p {
-    margin: 5px 0;
-}
-
-/* Fade Animation */
-.fade {
-    animation-name: fade;
-    animation-duration: 1.5s;
-}
-
-@keyframes fade {
-    from { opacity: .4 } 
-    to { opacity: 1 }
-}
-
-@media only screen and (max-width: 300px) {
-    .prev, .next { font-size: 11px; }
+/* Responsive Design */
+@media (max-width: 600px) {
+    .id-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .id-photo {
+        margin-bottom: 10px;
+    }
 }
